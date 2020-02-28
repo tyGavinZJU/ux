@@ -1,5 +1,6 @@
 import { ScreenName } from '@store/onboarding/types';
 import { DecodedAuthRequest } from './dev/types';
+import { event, page, setConfig, Providers } from '@blockstack/stats';
 
 export const SECRET_KEY_FAQ_WHERE = 'View Secret Key FAQ (Where)';
 export const SECRET_KEY_FAQ_LOSE = 'View Secret Key FAQ (Lose)';
@@ -51,13 +52,28 @@ export const titleNameMap = {
 export const doTrackScreenChange = (screen: ScreenName, decodedAuthRequest: DecodedAuthRequest | undefined) => {
   document.title = titleNameMap[screen];
   const appURL = decodedAuthRequest ? new URL(decodedAuthRequest?.redirect_uri) : null;
-  window.analytics.page(pageTrackingNameMap[screen], {
+  page({
+    name: pageTrackingNameMap[screen],
     appName: decodedAuthRequest?.appDetails?.name,
     appDomain: appURL?.host,
   });
 };
 
-export const doTrack = (type: string, payload?: string | object) => {
+export const doTrack = (type: string, payload?: object) => {
   console.log('Tracking:', { type, payload });
-  window.analytics.track(type, payload);
+  event({
+    name: type,
+    ...payload,
+  });
+};
+
+export const setStatsConfig = () => {
+  setConfig({
+    providers: [
+      {
+        name: Providers.Segment,
+        writeKey: SEGMENT_KEY,
+      },
+    ],
+  });
 };
