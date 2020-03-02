@@ -1,6 +1,6 @@
 import React from 'react';
 import { useConnect } from '@blockstack/connect';
-import { Button, Flex, Box } from '@blockstack/ui';
+import { Button, Flex } from '@blockstack/ui';
 
 const AuthButton: React.FC = () => {
   const { doOpenAuth } = useConnect();
