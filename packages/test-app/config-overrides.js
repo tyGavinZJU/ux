@@ -16,7 +16,7 @@ module.exports = override(
   }),
   babelInclude([
     path.resolve('src'), // make sure you link your own source
-    path.resolve('../src'),
+    path.resolve('../../connect/src'),
   ]),
   addReactRefresh({ disableRefreshCheck: true })
 );

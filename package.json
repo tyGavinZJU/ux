@@ -23,6 +23,7 @@
   },
   "scripts": {
     "typecheck": "lerna run typecheck",
+    "dev": "yarn lerna exec --parallel 'yarn dev' --scope test-app --scope @blockstack/app",
     "bootstrap": "yarn lerna exec --parallel 'yarn'",
     "build:libs": "yarn build:ui && yarn build:keychain && yarn build:connect",
     "build:ui": "lerna run build --scope @blockstack/ui",

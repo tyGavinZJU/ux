@@ -4,8 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { ThemeProvider, theme, CSSReset } from '@blockstack/ui';
-import { Connect } from '../../src/react/components/connect';
-import { AuthOptions } from '../../src/auth';
+import { Connect, AuthOptions } from '@blockstack/connect';
 
 const icon = `${document.location.href}/messenger-app-icon.png`;
 const authOptions: AuthOptions = {
